@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Freshwater Fish Compatibility Chart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6F1EE; --surface:#F7FBFA; --ink:#0E3433; --muted:#4D6D6B; --line:#C4DAD5;
+  --good:#2F9461; --good-bg:#D5EEDD; --warn:#B57A0A; --warn-bg:#FBEBC6; --bad:#C2452F; --bad-bg:#F8D9D2;
+  --accent:#0E6D6A; --self-bg:#DCE7E5;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1F1F; --surface:#112A2A; --ink:#E3F2EF; --muted:#9BBAB6; --line:#244241;
+    --good:#5CC98F; --good-bg:#16382A; --warn:#E9B44C; --warn-bg:#3A2E12; --bad:#F07C66; --bad-bg:#3E1D18;
+    --accent:#5CC6C1; --self-bg:#1B3534; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1F1F; --surface:#112A2A; --ink:#E3F2EF; --muted:#9BBAB6; --line:#244241;
+  --good:#5CC98F; --good-bg:#16382A; --warn:#E9B44C; --warn-bg:#3A2E12; --bad:#F07C66; --bad-bg:#3E1D18;
+  --accent:#5CC6C1; --self-bg:#1B3534; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;margin:0}
+.wrap{max-width:960px;margin:0 auto;padding:28px 18px 60px}
+header h1{font-size:clamp(2rem,7vw,3.4rem);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+header p{color:var(--muted);max-width:60ch;margin:10px 0 0}
+.tabs{display:flex;gap:6px;margin:26px 0 18px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;width:max-content;max-width:100%}
+.tabs button{border:0;background:none;color:var(--ink);font:700 15px "Atkinson Hyperlegible",sans-serif;padding:9px 18px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--bg)}
+button:focus-visible,input:focus-visible,td:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--muted);margin-bottom:16px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;font-weight:700;font-size:13px}
+.g{background:var(--good-bg);color:var(--good)} .w{background:var(--warn-bg);color:var(--warn)} .b{background:var(--bad-bg);color:var(--bad)}
+input[type=search]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit;margin-bottom:12px}
+.chips{display:grid;gap:16px;max-height:46vh;overflow:auto;padding-right:4px}
+.cat h3{font-size:1rem;font-weight:800;margin-bottom:8px;color:var(--muted)}
+.chiprow{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 13px;border-radius:999px;font:400 15px "Atkinson Hyperlegible",sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.profile{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+.profile h2{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:800}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0 6px}
+.facts div{border-left:3px solid var(--accent);padding-left:10px}
+.facts b{display:block;font-size:13px;color:var(--muted);font-weight:400}
+.note{color:var(--muted);margin:10px 0 0}
+.groups{display:grid;gap:14px;margin-top:18px}
+@media(min-width:760px){.groups{grid-template-columns:repeat(3,1fr)}}
+.group{border-radius:16px;padding:16px}
+.group h3{font-size:1.15rem;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.group.g{background:var(--good-bg)} .group.w{background:var(--warn-bg)} .group.b{background:var(--bad-bg)}
+.group ul{list-style:none;margin:0;padding:0;color:var(--ink)}
+.group li{padding:7px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.group li:first-child{border-top:0}
+.group li strong{display:block}
+.group li small{color:var(--muted);font-size:13.5px;line-height:1.4;display:block}
+.group .empty{color:var(--muted);font-size:14px}
+.scroller{overflow:auto;max-height:72vh;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:separate;border-spacing:0;font-size:13px}
+th,td{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+thead th{position:sticky;top:0;background:var(--surface);z-index:2;height:130px;vertical-align:bottom;padding:4px 0}
+thead th span{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-weight:700;padding:4px 0;display:inline-block}
+tbody th{position:sticky;left:0;background:var(--surface);z-index:1;text-align:left;padding:4px 10px;white-space:nowrap;font-weight:700}
+thead th:first-child{left:0;z-index:3}
+td{width:32px;min-width:32px;height:32px;text-align:center;font-weight:700;cursor:pointer}
+td.s{background:var(--self-bg);color:var(--muted)}
+td.hl,tbody th.hl{box-shadow:inset 0 0 0 2px var(--accent)}
+.detail{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);margin-top:14px;background:var(--ink);color:var(--bg);border-radius:14px;padding:14px 16px;min-height:56px}
+.detail strong{display:block}
+footer{margin-top:32px;font-size:13.5px;color:var(--muted);max-width:70ch}
+@media (prefers-reduced-motion:no-preference){.profile{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(6px)}}}
+@media print{.tabs,input,.chips,.detail{display:none}.scroller{max-height:none;overflow:visible}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Who can share a tank?</h1>
+  <p>Pick a fish to see which tankmates suit it, which need care, and which to avoid. Or open the full chart to compare every pair.</p>
+</header>
+
+<div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" id="tFinder">Fish finder</button>
+  <button role="tab" aria-selected="false" id="tChart">Full chart</button>
+</div>
+
+<div class="legend">
+  <span><i class="dot g">✓</i>Compatible</span>
+  <span><i class="dot w">!</i>Use caution</span>
+  <span><i class="dot b">✕</i>Avoid</span>
+</div>
+
+<section id="finder">
+  <input type="search" id="q" placeholder="Search 57 fish, shrimp and snails" aria-label="Search fish">
+  <div class="chips" id="chips"></div>
+  <div id="profile"></div>
+</section>
+
+<section id="chart" hidden>
+  <div class="scroller"><table id="matrix"></table></div>
+  <div class="detail" id="detail" aria-live="polite">Tap any square to see why.</div>
+</section>
+
+<footer>General guidance for typical adult fish in a suitably sized, well-planted tank. Individual temperament varies, so watch new tankmates closely for the first few weeks and have a backup plan.</footer>
+</div>
+
+<script>
+// [name, category, size cm, temp min, temp max, temperament (0 peaceful,1 semi,2 aggressive), water (h/s/n),
+//  eatsUnder cm, nipper (0/1/2), longFins, group, note, flags]
+const CATS=["Tetras & rasboras","Livebearers","Barbs, danios & minnows","Gouramis & bettas","Cichlids","Catfish & loaches","Algae eaters & sharks","Rainbowfish & others","Coldwater","Shrimp & snails"];
+const F=[
+ ["Neon tetra",0,3.5,21,27,0,"n",0,0,0,"6+","Shy schooler that feels safest in a big group with plants."],
+ ["Cardinal tetra",0,4,23,29,0,"s",0,0,0,"8+","Prefers warmer, softer water than neons. A classic discus companion."],
+ ["Ember tetra",0,2,23,29,0,"s",0,0,0,"8+","Tiny orange schooler; great for small planted tanks."],
+ ["Rummy-nose tetra",0,5,24,28,0,"s",0,0,0,"8+","Tight schooler; its red nose fades when stressed."],
+ ["Glowlight tetra",0,4,22,28,0,"n",0,0,0,"6+","Peaceful, hardy community schooler."],
+ ["Black skirt tetra",0,6,22,27,0,"n",0,1,0,"6+","Can nip long fins, especially in small groups."],
+ ["Serpae tetra",0,4.5,22,27,1,"n",0,2,0,"8+","Known fin nipper; keep in a large group."],
+ ["Congo tetra",0,8,23,27,0,"s",0,0,0,"6+","Larger, shimmering tetra that needs swimming room."],
+ ["Silver dollar",0,15,24,28,0,"n",0,0,0,"5+","Big, skittish schooler that eats live plants.",{herb:1}],
+ ["Harlequin rasbora",0,4.5,22,27,0,"n",0,0,0,"8+","Calm, tight schooler for community tanks."],
+ ["Guppy",1,5,22,28,0,"h",0,0,1,"3+","Males have long, showy tails that attract nippers."],
+ ["Endler's livebearer",1,3,22,28,0,"h",0,0,0,"3+","Smaller cousin of the guppy; very hardy."],
+ ["Platy",1,6,20,26,0,"h",0,0,0,"3+","Hardy livebearer; likes harder water."],
+ ["Molly",1,10,24,28,0,"h",0,0,0,"3+","Needs warm, hard water; grazes on algae."],
+ ["Swordtail",1,12,22,28,0,"h",0,0,0,"3+","Males can spar with each other; keep more females."],
+ ["Zebra danio",2,5,18,26,0,"n",0,1,0,"6+","Fast and busy; can pester slow, long-finned fish."],
+ ["Celestial pearl danio",2,2.5,20,26,0,"n",0,0,0,"8+","Tiny, spotted nano fish that likes dense plants."],
+ ["Cherry barb",2,5,23,27,0,"n",0,0,0,"6+","The gentle barb; rarely nips."],
+ ["Rosy barb",2,10,18,25,0,"n",0,1,0,"6+","Active barb that may nip in small groups."],
+ ["Tiger barb",2,7,22,27,1,"n",2.6,2,0,"6+","Notorious fin nipper, worse in small groups."],
+ ["Betta (male)",3,6.5,24,28,1,"n",2.6,0,1,"1","One male per tank. Flares at bright, long-finned or gourami-shaped fish.",{lab:1}],
+ ["Dwarf gourami",3,8,24,28,1,"n",2.6,0,0,"1–3","Males can be territorial with other gouramis and bettas.",{lab:1}],
+ ["Honey gourami",3,5,22,28,0,"n",0,0,0,"1–3","The gentlest gourami.",{lab:1}],
+ ["Pearl gourami",3,12,24,28,0,"n",2.6,0,1,"1–4","One of the most peaceful larger gouramis.",{lab:1}],
+ ["Three-spot gourami",3,13,22,27,1,"n",3,0,0,"1","Can turn territorial as it grows.",{lab:1}],
+ ["Paradise fish",3,9,16,26,1,"n",2.6,1,0,"1","Hardy but feisty; males fight each other.",{lab:1}],
+ ["Angelfish",4,15,24,29,1,"s",4.6,0,1,"1 pair or 5+","Will eat very small fish once grown. Needs a tall tank.",{flat:1}],
+ ["Discus",4,18,28,31,0,"s",2.6,0,0,"5+","Needs hot, soft, very clean water.",{flat:1}],
+ ["German blue ram",4,6,26,30,0,"s",2.6,0,0,"1 pair","Peaceful dwarf cichlid that likes it warm.",{cave:1}],
+ ["Bolivian ram",4,8,22,26,0,"n",2.6,0,0,"1 pair","Hardier, cooler-water alternative to the blue ram.",{cave:1}],
+ ["Kribensis",4,9,24,27,1,"n",2.6,0,0,"1 pair","Turns territorial when breeding.",{cave:1}],
+ ["Severum",4,20,24,29,1,"s",4,0,0,"1–2","Gentle giant cichlid, but still eats small fish.",{flat:1}],
+ ["Convict cichlid",4,13,22,28,2,"n",4,0,0,"1 pair","Breeds readily and gets very aggressive guarding fry."],
+ ["Jack Dempsey",4,25,22,29,2,"n",10,0,0,"1","Large, aggressive cichlid for big tanks."],
+ ["Oscar",4,35,23,27,2,"n",13,0,0,"1","Large predator; eats anything that fits in its mouth."],
+ ["African cichlid (mbuna)",4,12,24,28,2,"h",3,0,0,"Overstocked group","Aggressive and needs very hard, alkaline water. Species-only tanks."],
+ ["Corydoras",5,6,22,26,0,"n",0,0,0,"6+","Bottom-dwelling schooler; needs soft sand.",{bottom:1}],
+ ["Bristlenose pleco",5,13,22,27,0,"n",0,0,0,"1","Peaceful algae grazer; give it driftwood.",{bottom:1}],
+ ["Common pleco",5,45,22,28,0,"n",0,0,0,"1","Grows enormous; needs a very large tank.",{bottom:1,herb:1}],
+ ["Pictus catfish",5,12,22,27,0,"n",3.5,0,0,"3+","Night hunter that eats small tetras.",{bottom:1}],
+ ["Glass catfish",5,8,24,27,0,"s",0,0,0,"6+","Shy, see-through schooler; stressed by boisterous fish."],
+ ["Kuhli loach",5,10,24,29,0,"s",0,0,0,"5+","Nocturnal, eel-like and very shy.",{bottom:1}],
+ ["Clown loach",5,30,25,30,0,"n",3,0,0,"5+","Grows large and needs a big tank. Eats snails and shrimp.",{bottom:1,snail:1}],
+ ["Hillstream loach",5,7,18,24,0,"n",0,0,0,"3+","Needs cool, fast-flowing, oxygen-rich water.",{bottom:1}],
+ ["Otocinclus",6,4.5,22,27,0,"n",0,0,0,"5+","Tiny algae eater; needs a mature tank."],
+ ["Siamese algae eater",6,15,24,28,0,"n",0,0,0,"1–3","Active algae eater that needs swimming room.",{herb:1,bottom:1}],
+ ["Chinese algae eater",6,20,20,28,1,"n",0,0,0,"1","Becomes territorial with age and may latch onto flat-sided fish.",{bottom:1,latch:1}],
+ ["Rainbow shark",6,15,22,27,1,"n",0,0,0,"1","Territorial with other bottom dwellers and sharks.",{bottom:1,terr:1}],
+ ["Bala shark",6,30,22,28,0,"n",5,0,0,"5+","Grows huge and eats small fish; needs a very big tank."],
+ ["Boesemani rainbowfish",7,10,25,28,0,"h",0,0,0,"6+","Colourful, active schooler that prefers harder water."],
+ ["Pea puffer",7,2.5,24,28,1,"n",2.6,2,0,"Species tank","Nips fins and hunts snails and shrimp. Best kept alone.",{snail:1,puffer:1}],
+ ["Fancy goldfish",8,18,18,23,0,"n",4,0,1,"2+","Coldwater fish with a heavy bioload. Best with other goldfish."],
+ ["White cloud minnow",8,4,16,22,0,"n",0,0,0,"6+","Coolwater fish that can live unheated."],
+ ["Cherry shrimp",9,2.5,18,28,0,"n",0,0,0,"10+","Easy prey for many fish; needs moss or plants to hide in.",{inv:1}],
+ ["Amano shrimp",9,5,18,28,0,"n",0,0,0,"6+","Bigger and tougher than cherry shrimp; excellent algae eater.",{inv:1}],
+ ["Nerite snail",9,2.5,22,28,0,"n",0,0,0,"1+","Algae-eating snail that won't breed in fresh water.",{inv:1,snailInv:1}],
+ ["Mystery snail",9,5,20,28,0,"h",0,0,0,"1+","Also called the mystic or apple snail. Large, peaceful scavenger; harder water keeps its shell strong.",{inv:1,snailInv:1}]
+].map(a=>({name:a[0],cat:a[1],size:a[2],tmin:a[3],tmax:a[4],temp:a[5],water:a[6],eats:a[7],nip:a[8],longFin:a[9],group:a[10],note:a[11],fl:a[12]||{}}));
+
+const idx=n=>F.findIndex(f=>f.name===n);
+const O=[
+ ["Betta (male)","Guppy",2,"Bettas often attack guppies, mistaking their tails for a rival."],
+ ["Betta (male)","Endler's livebearer",1,"Bright males can trigger a betta, though their short fins help."],
+ ["Betta (male)","Dwarf gourami",2,"Both are labyrinth fish with similar territory; fights are common."],
+ ["Betta (male)","Three-spot gourami",2,"Three-spots grow larger and will bully a betta."],
+ ["Betta (male)","Paradise fish",2,"Paradise fish and bettas fight like rival males."],
+ ["Betta (male)","Pearl gourami",1,"Gouramis can trigger a betta's territorial behaviour. Watch closely."],
+ ["Betta (male)","Honey gourami",1,"Usually calm together, but watch for flaring."],
+ ["Betta (male)","Angelfish",2,"Angelfish nip betta fins and outcompete it for food."],
+ ["Discus","Cardinal tetra",0,"A classic pairing; cardinals handle the warm, soft water discus need."],
+ ["Discus","Angelfish",1,"Often kept together, but angelfish are pushier and can carry disease to discus."],
+ ["Discus","Bristlenose pleco",1,"Works if the tank is kept at the low end of discus range."],
+ ["Oscar","Bristlenose pleco",1,"Large plecos are one of the few common oscar tankmates; needs a very big tank."],
+ ["Oscar","Common pleco",1,"Large plecos are one of the few common oscar tankmates; needs a very big tank."],
+ ["Oscar","Severum",1,"Sometimes kept together in very large tanks; watch for bullying."],
+ ["Jack Dempsey","Common pleco",1,"A large pleco can hold its own in a big tank."],
+ ["Convict cichlid","Common pleco",1,"A large pleco can hold its own in a big tank."],
+ ["Fancy goldfish","Zebra danio",1,"Danios tolerate cool water but are fast and may harass slow goldfish."],
+ ["Fancy goldfish","White cloud minnow",1,"Both like cool water, but goldfish may eat small white clouds."],
+ ["Fancy goldfish","Hillstream loach",1,"Both like cool water; loaches need strong flow that goldfish dislike."],
+ ["Fancy goldfish","Cherry shrimp",1,"Adult shrimp can survive with goldfish, but babies get eaten."],
+ ["Fancy goldfish","Amano shrimp",1,"Amanos are big enough to survive most goldfish."],
+ ["Fancy goldfish","Nerite snail",1,"Nerites cope with goldfish but prefer slightly warmer water."],
+ ["Clown loach","Bristlenose pleco",0,"Both are peaceful bottom dwellers that share space well in a large tank."],
+ ["Kribensis","German blue ram",1,"Both claim caves when breeding; give each its own territory."],
+ ["Kribensis","Bolivian ram",1,"Both claim caves when breeding; give each its own territory."],
+ ["German blue ram","Bolivian ram",1,"Dwarf cichlids may squabble over territory."],
+ ["Betta (male)","Mystery snail",1,"Some bettas nip at snail antennae; most leave them alone."],
+ ["Tiger barb","Mystery snail",1,"Tiger barbs may pick at a mystery snail's antennae."],
+ ["Pea puffer","Mystery snail",1,"Adults are too big for a pea puffer, but it will harass them and eat any babies."],
+ ["Fancy goldfish","Mystery snail",1,"Usually fine, though goldfish sometimes pick at snail antennae."],
+];
+const ov={};O.forEach(([a,b,l,r])=>{const i=idx(a),j=idx(b);if(i<0||j<0)console.warn("bad override",a,b);ov[i+"-"+j]=ov[j+"-"+i]=[l,r]});
+
+function rate(i,j){
+  if(i===j)return null;
+  const k=i+"-"+j; if(ov[k])return ov[k];
+  const a=F[i],b=F[j]; let lvl=0; const why=[];
+  const bump=(l,r)=>{if(l>lvl)lvl=l;why.push(r)};
+  const lc=s=>s.toLowerCase();
+  if(a.name==="Fancy goldfish"||b.name==="Fancy goldfish") bump(2,"Goldfish are coldwater fish with heavy waste; keep them with other goldfish.");
+  const overlap=Math.min(a.tmax,b.tmax)-Math.max(a.tmin,b.tmin);
+  if(overlap<0) bump(2,`No shared temperature range (${a.tmin}–${a.tmax}°C vs ${b.tmin}–${b.tmax}°C).`);
+  else if(overlap<2) bump(1,`Only a narrow shared temperature range (${Math.max(a.tmin,b.tmin)}–${Math.min(a.tmax,b.tmax)}°C).`);
+  if(a.temp===2||b.temp===2) bump(2,`${a.temp===2?a.name:b.name} is aggressive and will bully or kill tankmates.`);
+  for(const [p,q] of [[a,b],[b,a]]){
+    if(q.fl.snailInv){ if(p.fl.snail) bump(2,`${p.name} hunts and eats snails.`); }
+    else if(p.eats&&p.eats>=q.size){
+      const big=p.eats>=q.size*1.6||p.eats>=10;
+      bump(big||(q.fl.inv&&p.eats>=3)?2:1,`${p.name} may eat ${lc(q.name)}${q.fl.inv?"":" — it fits in its mouth"}.`);
+    }
+    if(p.nip===2&&q.longFin) bump(2,`${p.name} nips the long fins of ${lc(q.name)}.`);
+    if(p.nip===1&&q.longFin) bump(1,`${p.name} can harass slow, long-finned ${lc(q.name)}.`);
+    if(p.nip===2&&!q.longFin&&q.temp===0&&!q.fl.inv&&q.size<=15&&!p.fl.puffer) {}
+    if(p.temp===1&&q.temp===1&&p.size>8&&q.size>8) bump(1,"Two semi-aggressive fish may compete for space.");
+    if(p.fl.latch&&q.fl.flat) bump(2,`${p.name} may latch onto ${lc(q.name)} and eat its slime coat.`);
+    if(p.fl.terr&&q.fl.bottom) bump(1,`${p.name} chases other bottom dwellers away from its territory.`);
+    if(p.fl.puffer&&!q.fl.inv) bump(Math.max(1,q.longFin?2:1),"Pea puffers nip at tankmates and do best in a species-only tank.");
+    if(p.fl.lab&&q.fl.lab&&p.temp+q.temp>=1) bump(1,"Gouramis and their relatives can squabble over the same space.");
+    if(p.fl.cave&&q.fl.cave) bump(1,"Both claim caves when breeding; give each its own territory.");
+  }
+  if((a.water==="h"&&b.water==="s")||(a.water==="s"&&b.water==="h")) bump(1,`${a.water==="h"?a.name:b.name} prefers hard water, ${a.water==="s"?a.name:b.name} soft.`);
+  const [big,small]=a.size>=b.size?[a,b]:[b,a];
+  if(big.size/small.size>4&&lvl<1&&!small.fl.inv&&!big.fl.herb&&!big.fl.bottom) bump(1,`Big size difference; make sure ${lc(small.name)} isn't outcompeted at feeding.`);
+  if(!why.length) why.push("Similar water needs and peaceful temperaments.");
+  return [lvl,[...new Set(why)].join(" ")];
+}
+const M=F.map((_,i)=>F.map((_,j)=>rate(i,j)));
+const sym=["✓","!","✕"],cls=["g","w","b"];
+
+// Finder
+let sel=idx("Neon tetra");
+const chips=document.getElementById("chips"),q=document.getElementById("q");
+function drawChips(){
+  const t=q.value.trim().toLowerCase();
+  chips.innerHTML="";
+  CATS.forEach((c,ci)=>{
+    const list=F.map((f,i)=>[f,i]).filter(([f])=>f.cat===ci&&(!t||f.name.toLowerCase().includes(t)));
+    if(!list.length)return;
+    const wrap=document.createElement("div");wrap.className="cat";
+    wrap.innerHTML=`<h3>${c}</h3>`;
+    const row=document.createElement("div");row.className="chiprow";
+    list.forEach(([f,i])=>{
+      const b=document.createElement("button");
+      b.className="chip";b.textContent=f.name;b.setAttribute("aria-pressed",i===sel);
+      b.onclick=()=>{sel=i;drawChips();drawProfile();document.getElementById("profile").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"start"})};
+      row.appendChild(b);
+    });
+    wrap.appendChild(row);chips.appendChild(wrap);
+  });
+  if(!chips.children.length) chips.innerHTML='<span class="note">No fish match that search. Try a shorter name.</span>';
+}
+function drawProfile(){
+  const f=F[sel],tm=["Peaceful","Semi-aggressive","Aggressive"][f.temp];
+  const water={h:"Harder water",s:"Softer water",n:"Adaptable"}[f.water];
+  const g=[[],[],[]];
+  F.forEach((o,j)=>{if(j!==sel)g[M[sel][j][0]].push([o.name,M[sel][j][1]])});
+  const col=(l,title)=>`<div class="group ${cls[l]}"><h3><i class="dot ${cls[l]}">${sym[l]}</i>${title} (${g[l].length})</h3>${g[l].length?`<ul>${g[l].map(([n,r])=>`<li><strong>${n}</strong>${l?`<small>${r}</small>`:""}</li>`).join("")}</ul>`:'<p class="empty">None in this list.</p>'}</div>`;
+  document.getElementById("profile").innerHTML=`<div class="profile">
+    <h2>${f.name}</h2>
+    <div class="facts"><div><b>Adult size</b>${f.size} cm</div><div><b>Temperature</b>${f.tmin}–${f.tmax} °C</div><div><b>Temperament</b>${tm}</div><div><b>Water</b>${water}</div><div><b>Keep</b>${f.group}</div></div>
+    <p class="note">${f.note}</p>
+    <div class="groups">${col(0,"Good tankmates")}${col(1,"Use caution")}${col(2,"Avoid")}</div></div>`;
+}
+q.addEventListener("input",drawChips);
+
+// Matrix
+const tbl=document.getElementById("matrix"),det=document.getElementById("detail");
+let h='<thead><tr><th></th>'+F.map(f=>`<th scope="col"><span>${f.name}</span></th>`).join("")+'</tr></thead><tbody>';
+F.forEach((f,i)=>{
+  h+=`<tr><th scope="row">${f.name}</th>`;
+  F.forEach((_,j)=>{
+    const r=M[i][j];
+    h+=r?`<td tabindex="0" class="${cls[r[0]]}" data-i="${i}" data-j="${j}" aria-label="${f.name} with ${F[j].name}">${sym[r[0]]}</td>`:`<td class="s" data-i="${i}" data-j="${j}" tabindex="0" aria-label="${f.name}">·</td>`;
+  });
+  h+='</tr>';
+});
+tbl.innerHTML=h+'</tbody>';
+function show(td){
+  tbl.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl"));
+  const i=+td.dataset.i,j=+td.dataset.j;td.classList.add("hl");
+  tbl.tBodies[0].rows[i].cells[0].classList.add("hl");
+  if(i===j){det.innerHTML=`<strong>${F[i].name} with its own kind</strong>Keep: ${F[i].group}. ${F[i].note}`;return}
+  const r=M[i][j];
+  det.innerHTML=`<strong>${sym[r[0]]} ${F[i].name} + ${F[j].name}: ${["Compatible","Use caution","Avoid"][r[0]]}</strong>${r[1]}`;
+}
+tbl.addEventListener("click",e=>{const td=e.target.closest("td");if(td)show(td)});
+tbl.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){const td=e.target.closest("td");if(td){e.preventDefault();show(td)}}});
+
+// Tabs
+const tF=document.getElementById("tFinder"),tC=document.getElementById("tChart");
+function tab(c){tF.setAttribute("aria-selected",!c);tC.setAttribute("aria-selected",c);document.getElementById("finder").hidden=c;document.getElementById("chart").hidden=!c}
+tF.onclick=()=>tab(false);tC.onclick=()=>tab(true);
+
+drawChips();drawProfile();
+</script>
+
+</body>
+</html>
